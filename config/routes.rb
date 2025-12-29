@@ -2,10 +2,12 @@
 
 module TreeSitterLive
   class Routes < Hanami::Routes
-    slice :playground, at: '/' do
-      root to: 'home.show'
+    resources :grammars
 
-      resources :grammars
+    root to: 'grammars.index'
+
+    slice :playground, at: '/playground' do
+      root to: 'home.show'
     end
   end
 end
