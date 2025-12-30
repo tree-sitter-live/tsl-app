@@ -21,6 +21,7 @@ module TreeSitterLive
             repo.create(request.params)
             response.redirect(routes.path(:grammars))
           else
+            response.status = 422
             response.render(new_view, errors: request.params.errors.to_h)
           end
         end
