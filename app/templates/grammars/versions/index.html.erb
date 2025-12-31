@@ -1,0 +1,11 @@
+<h1>Viewing versions for <%= grammar.name %></h1>
+
+<% if versions.any? %>
+  <% versions.each do |version| %>
+    <div>
+      <h2>Version <%= version.identifier %></h2>
+    </div>
+  <% end %>
+<% else %>
+  <p>No versions found. <%= link_to 'Create a new version', routes.path(:new_grammar_version, grammar_id: grammar.id) %></p>
+<% end %>

@@ -45,6 +45,8 @@ group :test do
   # Web integration
   gem 'capybara'
   gem 'rack-test'
+
+  gem 'rom-factory'
 end
 
 group :tools do

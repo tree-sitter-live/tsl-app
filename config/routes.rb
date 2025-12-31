@@ -2,7 +2,9 @@
 
 module TreeSitterLive
   class Routes < Hanami::Routes
-    resources :grammars
+    resources :grammars do
+      resources :versions
+    end
 
     root to: 'grammars.index'
 

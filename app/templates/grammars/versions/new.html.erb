@@ -1,0 +1,8 @@
+<h1>New Version</h1>
+
+<%= form_for(:version, routes.path(:grammar_versions, grammar_id: grammar.id)) do |form| %>
+  <label for="identifier">Identifier</label>
+  <input type="text" id="identifier" name="identifier" required autocomplete="off" placeholder="Enter version identifier, e.g. 'v1.0.0'">
+
+  <button type="submit">Create version</button>
+<% end %>

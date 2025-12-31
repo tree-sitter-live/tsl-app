@@ -2,10 +2,10 @@
 
 module TreeSitterLive
   module Relations
-    class Grammars < TreeSitterLive::DB::Relation
-      schema :grammars, infer: true do
+    class Versions < TreeSitterLive::DB::Relation
+      schema :versions, infer: true do
         associations do
-          has_many :versions
+          belongs_to :grammar
         end
       end
     end

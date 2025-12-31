@@ -1,8 +1,7 @@
 <h1>Grammars</h1>
 
-<%= link_to "Create a new grammar", routes.path(:new_grammar) %>
-
 <% if grammars.any? %>
+  <%= link_to "Create a new grammar", routes.path(:new_grammar) %>
   <table>
     <thead>
       <tr>
@@ -20,6 +19,7 @@
           <td><%= link_to grammar.repository_url, grammar.repository_url, target: "_blank" %></td>
           <td>
             <%= link_to "Edit", routes.path(:edit_grammar, id: grammar.id) %>
+            <%= link_to "Versions", routes.path(:grammar_versions, grammar_id: grammar.id) %>
           </td>
         </tr>
       <% end %>
