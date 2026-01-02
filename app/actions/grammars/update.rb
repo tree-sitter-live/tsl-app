@@ -6,7 +6,8 @@ module TreeSitterLive
       class Update < TreeSitterLive::Action
         include Deps[
           repo: 'repos.grammar_repo',
-          show_view: 'views.grammars.show'
+          show_view: 'views.grammars.show',
+          edit_view: 'views.grammars.edit'
         ]
 
         params do
@@ -15,7 +16,7 @@ module TreeSitterLive
           required(:grammar).hash do
             required(:name).filled(:string)
             optional(:description).filled(:string)
-            required(:repository_url).filled(:string)
+            required(:repository_url).filled(::TreeSitterLive::Types::Url)
           end
         end
 
@@ -24,9 +25,13 @@ module TreeSitterLive
 
           halt :unprocessable_entity unless grammar
 
-          repo.update(grammar.id, **request.params[:grammar])
-
-          response.render(show_view, id: grammar.id)
+          if request.params.valid?
+            repo.update(grammar.id, **request.params[:grammar])
+            response.render(show_view, id: grammar.id)
+          else
+            response.status = :unprocessable_entity
+            response.render(edit_view, id: grammar.id, errors: request.params.errors.to_h)
+          end
         end
       end
     end

@@ -9,6 +9,8 @@ module TreeSitterLive
         expose :grammar do |id:|
           grammar_repo.find(id)
         end
+
+        expose :errors, default: Dry::Core::EMPTY_HASH
       end
     end
   end

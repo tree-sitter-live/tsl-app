@@ -1,5 +1,15 @@
 <h1>Editing <%= grammar.name %></h1>
 
+<% if errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for(:grammar, routes.path(:grammar, id: grammar.id), method: :patch) do |form| %>
   <%= form.label :name %>
   <%= form.text_field :name %>
